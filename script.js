@@ -34,3 +34,23 @@ function toText(x)
     if(x === 1) return "Paper";
     return "Scissors";
 }
+
+function getPlayerChoice()
+{
+    
+}
+
+function playGame(playerChoice)
+{
+    let playerPoints = 0;
+    let computerPoints = 0;
+    let answer;
+    while( playerPoints < 5 && computerPoints < 5 )
+    {
+        answer = playRound(playerChoice, getComputerChoice());
+        if(answer.charAt(0) === "W") playerPoints++;
+        else if(answer.charAt(0) === "L") computerPoints++;
+        alert(answer);
+        playerChoice = getPlayerChoice();
+    }
+}
