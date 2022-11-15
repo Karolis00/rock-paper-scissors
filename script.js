@@ -17,3 +17,20 @@ function getPlayerChoice(x)
     return choice;
 }
 
+function playRound(playerChoice, computerChoice)
+{
+    let result = "";
+
+    if(playerChoice === computerChoice) result = "Draw!";
+    else if ( playerChoice === computerChoice + 1 ||  
+        playerChoice === computerChoice - 2) result = "Win! " + toText(playerChoice) + " beats " + toText(computerChoice).toLowerCase();
+    else result = "Lose! " + toText(computerChoice)+ " beats " + toText(playerChoice).toLowerCase();
+    return result;
+}
+
+function toText(x)
+{
+    if(x === 0) return "Rock";
+    if(x === 1) return "Paper";
+    return "Scissors";
+}
