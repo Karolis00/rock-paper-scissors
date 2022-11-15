@@ -7,7 +7,7 @@ function getComputerChoice()
     return Math.floor(Math.random() * 3 );
 }
 
-function getPlayerChoice(x)
+function indexPlayerChoice(x)
 {
     let choice;
     if(x.toUpperCase() === "ROCK") choice = 0;
