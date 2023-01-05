@@ -7,15 +7,6 @@ function getComputerChoice()
     return Math.floor(Math.random() * 3 );
 }
 
-function indexPlayerChoice(x)
-{
-    let choice = -1;
-    if(x.toUpperCase() === "ROCK") choice = 0;
-    else if (x.toUpperCase() === "PAPER") choice = 1;
-    else if (x.toUpperCase() === "SCISSORS") choice = 2;
-    return choice;
-}
-
 function playRound(playerChoice, computerChoice)
 {
     let result = "";
@@ -32,11 +23,6 @@ function toText(x)
     if(x === 0) return "Rock";
     if(x === 1) return "Paper";
     return "Scissors";
-}
-
-function getPlayerChoice()
-{
-    return 0;//prompt("Choose rock/paper/scissors");
 }
 
 function gameOverCheck(playerPoints, computerPoints)
