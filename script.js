@@ -25,11 +25,11 @@ function toText(x)
     return "Scissors";
 }
 
-function gameOverCheck(playerPoints, computerPoints)
+function gameOver(playerPoints, computerPoints)
 {
-    if(playerPoints === 5) return "Player wins!";
-    if(computerPoints === 5) return "Computer wins!";
-    return null;
+    if(playerPoints === 5) result.textContent = "Player wins!";
+    else if(computerPoints === 5) result.textContent = "Computer wins!";
+    else return 1;
 }
 
 function playGame()
@@ -43,16 +43,15 @@ function playGame()
             button.addEventListener('click', e => 
             {
                 answer = playRound(parseInt(button.id), getComputerChoice());
+
                 if(answer.charAt(0) === "W") playerPoints++;
                 else if(answer.charAt(0) === "L") computerPoints++;
+
                 result.textContent = answer;
                 score.textContent = `${playerPoints}|${computerPoints}`;
-                answer = gameOverCheck(playerPoints, computerPoints);
-                if(answer)
+
+                if(!gameOver(playerPoints, computerPoints))
                 {
-                    console.log(answer);
-                    result.textContent = answer;
-                    answer = null;
                     playerPoints = 0;
                     computerPoints = 0;
                 }
