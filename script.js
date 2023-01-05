@@ -36,7 +36,7 @@ function toText(x)
 
 function getPlayerChoice()
 {
-    return prompt("Choose rock/paper/scissors");
+    return 0;//prompt("Choose rock/paper/scissors");
 }
 
 function playGame()
@@ -51,7 +51,7 @@ function playGame()
 
         if(playerChoice === -1) // check if user input was rock/paper/scissors
         {
-            alert("NOT A VALID CHOICE");
+            //alert("NOT A VALID CHOICE");
         }
         else // Only play game if proper user input
         {
@@ -60,16 +60,27 @@ function playGame()
             if(answer.charAt(0) === "W") playerPoints++;
             else if(answer.charAt(0) === "L") computerPoints++;
 
-            alert(answer);
-            alert("Score is " + playerPoints + " | " + computerPoints);
+            //alert(answer);
+            //alert("Score is " + playerPoints + " | " + computerPoints);
         }
     }
 
-    if(computerPoints === 5) alert("COMPUTER WINS!");
-    else alert("YOU WIN, PLAYER!");
+    //if(computerPoints === 5) alert("COMPUTER WINS!");
+    //else alert("YOU WIN, PLAYER!");
 
-    if(prompt("Play again?", "Yes").toUpperCase() === "YES")
-    playGame();
+    //if(prompt("Play again?", "Yes").toUpperCase() === "YES")
+    //playGame();
 }
 
-playGame();
+//playGame();
+
+const result = document.querySelector('#result');
+const buttons = document.querySelectorAll('.playerSelectionButton');
+
+    buttons.forEach(i =>
+    {
+        i.addEventListener('click', e => 
+        {
+            result.textContent = playRound(parseInt(i.id), getComputerChoice());
+        })
+    })
