@@ -39,48 +39,43 @@ function getPlayerChoice()
     return 0;//prompt("Choose rock/paper/scissors");
 }
 
+function gameOverCheck(playerPoints, computerPoints)
+{
+    if(playerPoints === 5) return "Player wins!";
+    if(computerPoints === 5) return "Computer wins!";
+    return null;
+}
+
 function playGame()
 {
     let playerPoints = 0;
     let computerPoints = 0;
     let answer;
-    
-    while( playerPoints < 5 && computerPoints < 5 )
-    {
-        playerChoice = indexPlayerChoice(getPlayerChoice());
 
-        if(playerChoice === -1) // check if user input was rock/paper/scissors
+        buttons.forEach(button =>
         {
-            //alert("NOT A VALID CHOICE");
-        }
-        else // Only play game if proper user input
-        {
-            answer = playRound(playerChoice, getComputerChoice());
-
-            if(answer.charAt(0) === "W") playerPoints++;
-            else if(answer.charAt(0) === "L") computerPoints++;
-
-            //alert(answer);
-            //alert("Score is " + playerPoints + " | " + computerPoints);
-        }
-    }
-
-    //if(computerPoints === 5) alert("COMPUTER WINS!");
-    //else alert("YOU WIN, PLAYER!");
-
-    //if(prompt("Play again?", "Yes").toUpperCase() === "YES")
-    //playGame();
+            button.addEventListener('click', e => 
+            {
+                answer = playRound(parseInt(button.id), getComputerChoice());
+                if(answer.charAt(0) === "W") playerPoints++;
+                else if(answer.charAt(0) === "L") computerPoints++;
+                result.textContent = answer;
+                score.textContent = `${playerPoints}|${computerPoints}`;
+                answer = gameOverCheck(playerPoints, computerPoints);
+                if(answer)
+                {
+                    console.log(answer);
+                    result.textContent = answer;
+                    answer = null;
+                    playerPoints = 0;
+                    computerPoints = 0;
+                }
+            })
+        })
 }
 
-//playGame();
-
 const result = document.querySelector('#result');
+const score = document.querySelector('#score');
 const buttons = document.querySelectorAll('.playerSelectionButton');
 
-    buttons.forEach(i =>
-    {
-        i.addEventListener('click', e => 
-        {
-            result.textContent = playRound(parseInt(i.id), getComputerChoice());
-        })
-    })
+playGame();
